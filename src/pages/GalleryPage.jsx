@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar"
 import Gallery from "../components/Gallery"
 import Footer from "../components/Footer"
+import Whatsapp from "../components/Whatsapp"
 
 function GalleryPage() {
   return (
@@ -8,6 +9,7 @@ function GalleryPage() {
       <Navbar />
       <Gallery />
       <Footer />
+      <Whatsapp/>
     </>
   )
 }
