@@ -16,7 +16,7 @@ function Login() {
     try {
 
       const response = await axios.post(
-        " https://firangidecor-backend.onrender.com",
+         "https://firangidecor-backend.onrender.com/login",
         {
           username,
           password
