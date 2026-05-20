@@ -6,19 +6,33 @@ function Gallery() {
   const [products, setProducts] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
 
+  const API =
+    "https://firangidecor-backend.onrender.com"
+
   useEffect(() => {
 
-    axios.get(" https://firangidecor-backend.onrender.com")
-      .then((response) => {
+    const fetchProducts = async () => {
+
+      try {
+
+        const response = await axios.get(
+          `${API}/products`
+        )
+
         setProducts(response.data)
-      })
-      .catch((error) => {
+
+      } catch (error) {
+
         console.log(error)
-      })
+      }
+    }
+
+    fetchProducts()
 
   }, [])
 
   return (
+
     <section className="py-16 px-6 bg-gray-100 min-h-screen">
 
       <h2 className="text-4xl font-bold text-center mb-12">
@@ -33,7 +47,9 @@ function Gallery() {
           <div
             key={product.id}
             className="bg-white rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-300 cursor-pointer"
-            onClick={() => setSelectedImage(product.imageUrl)}
+            onClick={() =>
+              setSelectedImage(product.imageUrl)
+            }
           >
 
             <img
