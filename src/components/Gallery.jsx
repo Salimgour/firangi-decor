@@ -8,7 +8,7 @@ function Gallery() {
 
   useEffect(() => {
 
-    axios.get("http://localhost:8080/products")
+    axios.get(" https://firangidecor-backend.onrender.com")
       .then((response) => {
         setProducts(response.data)
       })

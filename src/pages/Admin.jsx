@@ -3,6 +3,9 @@ import axios from "axios"
 
 function Admin() {
 
+  const API =
+    "https://firangidecor-backend.onrender.com"
+
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
@@ -22,7 +25,7 @@ function Admin() {
     try {
 
       const response = await axios.get(
-        "http://localhost:8080/products"
+        `${API}/products`
       )
 
       setProducts(response.data)
@@ -34,11 +37,17 @@ function Admin() {
   }
 
   // LOAD PRODUCTS
-  useEffect(() => {
+   useEffect(() => {
 
-    fetchProducts()
+  const loadProducts = async () => {
 
-  }, [])
+    await fetchProducts()
+
+  }
+
+  loadProducts()
+
+}, [])
 
   // DELETE PRODUCT
   const deleteProduct = async (id) => {
@@ -46,7 +55,7 @@ function Admin() {
     try {
 
       await axios.delete(
-        `http://localhost:8080/products/${id}`,
+        `${API}/products/${id}`,
         {
           headers: {
             Authorization:
@@ -92,7 +101,7 @@ function Admin() {
       }
 
       await axios.put(
-        `http://localhost:8080/products/${editingProduct.id}`,
+        `${API}/products/${editingProduct.id}`,
         updatedData,
         {
           headers: {
@@ -128,7 +137,7 @@ function Admin() {
       formData.append("file", file)
 
       const uploadResponse = await axios.post(
-        "http://localhost:8080/cloudinary/upload",
+        `${API}/cloudinary/upload`,
         formData
       )
 
@@ -142,7 +151,7 @@ function Admin() {
       }
 
       await axios.post(
-        "http://localhost:8080/products",
+        `${API}/products`,
         productData,
         {
           headers: {
